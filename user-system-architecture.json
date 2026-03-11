@@ -1,0 +1,337 @@
+{
+  "nodes": [
+    {
+      "id": "frontend-web-admin",
+      "type": "default",
+      "position": { "x": 100, "y": 50 },
+      "data": {
+        "label": "Web 管理后台",
+        "type": "frontend",
+        "config": {
+          "name": "用户系统管理后台",
+          "framework": "react",
+          "port": 3000
+        }
+      }
+    },
+    {
+      "id": "api-users",
+      "type": "default",
+      "position": { "x": 350, "y": 50 },
+      "data": {
+        "label": "API: 用户管理",
+        "type": "api",
+        "config": {
+          "name": "用户 API",
+          "route": "/api/v1/users/*",
+          "method": "POST",
+          "requiresAuth": false,
+          "description": "用户注册、登录、资料管理接口"
+        }
+      }
+    },
+    {
+      "id": "api-points",
+      "type": "default",
+      "position": { "x": 350, "y": 180 },
+      "data": {
+        "label": "API: 积分管理",
+        "type": "api",
+        "config": {
+          "name": "积分 API",
+          "route": "/api/v1/users/points/*",
+          "method": "POST",
+          "requiresAuth": true,
+          "description": "积分获取、消费、查询接口"
+        }
+      }
+    },
+    {
+      "id": "api-account",
+      "type": "default",
+      "position": { "x": 350, "y": 310 },
+      "data": {
+        "label": "API: 账户管理",
+        "type": "api",
+        "config": {
+          "name": "账户 API",
+          "route": "/api/v1/users/balance/*",
+          "method": "POST",
+          "requiresAuth": true,
+          "description": "充值、提现、余额查询接口"
+        }
+      }
+    },
+    {
+      "id": "api-tags",
+      "type": "default",
+      "position": { "x": 350, "y": 440 },
+      "data": {
+        "label": "API: 标签管理",
+        "type": "api",
+        "config": {
+          "name": "标签 API",
+          "route": "/api/v1/tags/*",
+          "method": "GET",
+          "requiresAuth": false,
+          "description": "标签 CRUD、用户标签关联接口"
+        }
+      }
+    },
+    {
+      "id": "service-user",
+      "type": "default",
+      "position": { "x": 600, "y": 50 },
+      "data": {
+        "label": "Service: UserService",
+        "type": "service",
+        "config": {
+          "name": "用户服务",
+          "functionName": "UserService",
+          "description": "用户注册、登录、资料管理、JWT 认证"
+        }
+      }
+    },
+    {
+      "id": "service-points",
+      "type": "default",
+      "position": { "x": 600, "y": 180 },
+      "data": {
+        "label": "Service: PointsService",
+        "type": "service",
+        "config": {
+          "name": "积分服务",
+          "functionName": "PointsService",
+          "description": "积分获取、消费、规则管理、交易记录"
+        }
+      }
+    },
+    {
+      "id": "service-account",
+      "type": "default",
+      "position": { "x": 600, "y": 310 },
+      "data": {
+        "label": "Service: AccountService",
+        "type": "service",
+        "config": {
+          "name": "账户服务",
+          "functionName": "AccountService",
+          "description": "充值、提现、余额管理、冻结/解冻"
+        }
+      }
+    },
+    {
+      "id": "service-tag",
+      "type": "default",
+      "position": { "x": 600, "y": 440 },
+      "data": {
+        "label": "Service: TagService",
+        "type": "service",
+        "config": {
+          "name": "标签服务",
+          "functionName": "TagService",
+          "description": "标签管理、用户标签关联、标签查询"
+        }
+      }
+    },
+    {
+      "id": "repo-user",
+      "type": "default",
+      "position": { "x": 850, "y": 50 },
+      "data": {
+        "label": "Repository: UserRepository",
+        "type": "repository",
+        "config": {
+          "name": "用户数据访问层",
+          "entity": "users",
+          "operations": ["create", "read", "update", "delete"]
+        }
+      }
+    },
+    {
+      "id": "repo-points",
+      "type": "default",
+      "position": { "x": 850, "y": 180 },
+      "data": {
+        "label": "Repository: PointsAccountRepository",
+        "type": "repository",
+        "config": {
+          "name": "积分账户数据访问层",
+          "entity": "user_points_accounts",
+          "operations": ["create", "read", "update"]
+        }
+      }
+    },
+    {
+      "id": "repo-account",
+      "type": "default",
+      "position": { "x": 850, "y": 310 },
+      "data": {
+        "label": "Repository: AccountBalanceRepository",
+        "type": "repository",
+        "config": {
+          "name": "账户余额数据访问层",
+          "entity": "user_account_balances",
+          "operations": ["create", "read", "update"]
+        }
+      }
+    },
+    {
+      "id": "repo-tag",
+      "type": "default",
+      "position": { "x": 850, "y": 440 },
+      "data": {
+        "label": "Repository: TagRepository",
+        "type": "repository",
+        "config": {
+          "name": "标签数据访问层",
+          "entity": "tags",
+          "operations": ["create", "read", "update", "delete"]
+        }
+      }
+    },
+    {
+      "id": "database-mysql",
+      "type": "default",
+      "position": { "x": 1100, "y": 250 },
+      "data": {
+        "label": "Database: MySQL",
+        "type": "database",
+        "config": {
+          "name": "user_system 数据库",
+          "type": "mysql",
+          "host": "localhost",
+          "port": 3306
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-frontend-to-api-users",
+      "source": "frontend-web-admin",
+      "target": "api-users"
+    },
+    {
+      "id": "edge-frontend-to-api-points",
+      "source": "frontend-web-admin",
+      "target": "api-points"
+    },
+    {
+      "id": "edge-frontend-to-api-account",
+      "source": "frontend-web-admin",
+      "target": "api-account"
+    },
+    {
+      "id": "edge-frontend-to-api-tags",
+      "source": "frontend-web-admin",
+      "target": "api-tags"
+    },
+    {
+      "id": "edge-api-users-to-service",
+      "source": "api-users",
+      "target": "service-user"
+    },
+    {
+      "id": "edge-api-points-to-service",
+      "source": "api-points",
+      "target": "service-points"
+    },
+    {
+      "id": "edge-api-account-to-service",
+      "source": "api-account",
+      "target": "service-account"
+    },
+    {
+      "id": "edge-api-tags-to-service",
+      "source": "api-tags",
+      "target": "service-tag"
+    },
+    {
+      "id": "edge-service-user-to-repo",
+      "source": "service-user",
+      "target": "repo-user"
+    },
+    {
+      "id": "edge-service-points-to-repo",
+      "source": "service-points",
+      "target": "repo-points"
+    },
+    {
+      "id": "edge-service-account-to-repo",
+      "source": "service-account",
+      "target": "repo-account"
+    },
+    {
+      "id": "edge-service-tag-to-repo",
+      "source": "service-tag",
+      "target": "repo-tag"
+    },
+    {
+      "id": "edge-repo-user-to-db",
+      "source": "repo-user",
+      "target": "database-mysql"
+    },
+    {
+      "id": "edge-repo-points-to-db",
+      "source": "repo-points",
+      "target": "database-mysql"
+    },
+    {
+      "id": "edge-repo-account-to-db",
+      "source": "repo-account",
+      "target": "database-mysql"
+    },
+    {
+      "id": "edge-repo-tag-to-db",
+      "source": "repo-tag",
+      "target": "database-mysql"
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod-user-module",
+      "name": "用户模块",
+      "type": "feature",
+      "layer": "application",
+      "version": "1.0.0",
+      "nodeIds": ["api-users", "service-user", "repo-user"],
+      "metadata": {
+        "createdAt": "2024-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "mod-points-module",
+      "name": "积分模块",
+      "type": "feature",
+      "layer": "application",
+      "version": "1.0.0",
+      "nodeIds": ["api-points", "service-points", "repo-points"],
+      "metadata": {
+        "createdAt": "2024-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "mod-account-module",
+      "name": "账户模块",
+      "type": "feature",
+      "layer": "application",
+      "version": "1.0.0",
+      "nodeIds": ["api-account", "service-account", "repo-account"],
+      "metadata": {
+        "createdAt": "2024-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "mod-tag-module",
+      "name": "标签模块",
+      "type": "feature",
+      "layer": "application",
+      "version": "1.0.0",
+      "nodeIds": ["api-tags", "service-tag", "repo-tag"],
+      "metadata": {
+        "createdAt": "2024-01-01T00:00:00.000Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+/**
+ * ReactFlow 节点样式
+ * 使用默认样式，只保留必要的优化
+ */
+
+/* 节点基础样式 */
+.react-flow__node {
+  cursor: grab;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+/* 节点拖拽时的样式 */
+.react-flow__node-dragging {
+  opacity: 0.8;
+}
+
+/* 连接线样式 */
+.react-flow__edge-path {
+  stroke-width: 2px;
+}
+
+/* 连接点样式 - 小圆点 */
+.react-flow__handle {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(59, 130, 246, 0.5) !important;
+  background: var(--color-primary-500) !important;
+  box-shadow: none !important;
+  opacity: 0.9;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.5);
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6) !important;
+}
+
+.react-flow__handle-connecting {
+  background: var(--color-success-500) !important;
+  border-color: var(--color-success-500) !important;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4) !important;
+  opacity: 1;
+}
+
+/* 确保所有类型的连接点都是圆形 */
+.react-flow__handle-left,
+.react-flow__handle-right,
+.react-flow__handle-top,
+.react-flow__handle-bottom {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+}
+
+/* 迷你地图 */
+/* 迷你地图 - 右移避免被左侧栏遮挡 */
+.react-flow__minimap {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-neutral-200);
+  background: rgba(255, 255, 255, 0.95);
+  right: 80px;  /* ✅ 右移，避免被左侧栏遮挡 */
+}
+
+/* 控制面板 - 右移避免被左侧栏遮挡 */
+.react-flow__controls {
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-neutral-200);
+  overflow: hidden;
+  background: white;
+  right: 80px;  /* ✅ 右移，避免被左侧栏遮挡 */
+}
+
+.react-flow__controls-button {
+  border: none;
+  background: white;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--color-neutral-50);
+}
+
+/* 背景 */
+.react-flow__background {
+  background-color: var(--color-neutral-50);
+}
+
+/* 选择框 */
+.react-flow__selection {
+  background: rgba(59, 130, 246, 0.08);
+  border: 2px dashed var(--color-primary-500);
+  border-radius: var(--radius-base);
+}

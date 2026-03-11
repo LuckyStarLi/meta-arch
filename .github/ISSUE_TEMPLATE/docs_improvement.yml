@@ -1,0 +1,41 @@
+---
+name: 文档改进
+description: 提出文档改进建议
+title: "[Docs]: "
+labels: ["documentation", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您帮助改进我们的文档！
+        
+  - type: textarea
+    id: description
+    attributes:
+      label: 文档改进建议
+      description: 请描述您想要改进的文档部分
+      placeholder: 例如：README 中的安装说明不够详细
+    validations:
+      required: true
+      
+  - type: textarea
+    id: reason
+    attributes:
+      label: 为什么需要改进？
+      description: 请说明当前文档存在的问题
+      placeholder: 例如：新手用户可能会感到困惑
+      
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 您的建议
+      description: 您建议如何改进？
+      placeholder: 例如：添加更多示例代码和截图
+      
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 确认
+      options:
+        - label: 我愿意帮助改进这部分文档
+          required: false

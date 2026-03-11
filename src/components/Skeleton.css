@@ -1,0 +1,365 @@
+/**
+ * 骨架屏加载组件
+ * 专业的加载占位符，提升用户体验
+ */
+
+/* ==================== 骨架屏基础样式 ==================== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-neutral-100) 0%,
+    var(--color-neutral-200) 50%,
+    var(--color-neutral-100) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s var(--ease-in-out) infinite;
+  border-radius: var(--radius-base);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==================== 骨架屏尺寸变体 ==================== */
+
+/* 文本骨架屏 */
+.skeleton-text {
+  height: 1em;
+  margin-bottom: var(--spacing-2);
+}
+
+.skeleton-text--sm {
+  height: 12px;
+}
+
+.skeleton-text--base {
+  height: 16px;
+}
+
+.skeleton-text--lg {
+  height: 20px;
+}
+
+.skeleton-text--xl {
+  height: 24px;
+}
+
+/* 圆形骨架屏 */
+.skeleton-circle {
+  border-radius: var(--radius-full);
+}
+
+.skeleton-circle--sm {
+  width: 32px;
+  height: 32px;
+}
+
+.skeleton-circle--base {
+  width: 40px;
+  height: 40px;
+}
+
+.skeleton-circle--lg {
+  width: 48px;
+  height: 48px;
+}
+
+.skeleton-circle--xl {
+  width: 64px;
+  height: 64px;
+}
+
+/* 矩形骨架屏 */
+.skeleton-rectangle {
+  border-radius: var(--radius-base);
+}
+
+.skeleton-rectangle--sm {
+  width: 100%;
+  height: 80px;
+}
+
+.skeleton-rectangle--base {
+  width: 100%;
+  height: 120px;
+}
+
+.skeleton-rectangle--lg {
+  width: 100%;
+  height: 160px;
+}
+
+.skeleton-rectangle--xl {
+  width: 100%;
+  height: 200px;
+}
+
+/* 卡片骨架屏 */
+.skeleton-card {
+  background: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.skeleton-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.skeleton-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+}
+
+.skeleton-card__title {
+  flex: 1;
+  height: 16px;
+}
+
+.skeleton-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.skeleton-card__line {
+  height: 12px;
+  width: 100%;
+}
+
+.skeleton-card__line--short {
+  width: 60%;
+}
+
+.skeleton-card__line--medium {
+  width: 80%;
+}
+
+/* 按钮骨架屏 */
+.skeleton-button {
+  height: 40px;
+  border-radius: var(--radius-base);
+  width: 120px;
+}
+
+.skeleton-button--sm {
+  height: 32px;
+  width: 100px;
+}
+
+.skeleton-button--lg {
+  height: 48px;
+  width: 140px;
+}
+
+/* 输入框骨架屏 */
+.skeleton-input {
+  height: 40px;
+  border-radius: var(--radius-base);
+  width: 100%;
+}
+
+.skeleton-input--sm {
+  height: 32px;
+}
+
+.skeleton-input--lg {
+  height: 48px;
+}
+
+/* 表格骨架屏 */
+.skeleton-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.skeleton-table__row {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+.skeleton-table__cell {
+  flex: 1;
+  height: 16px;
+}
+
+.skeleton-table__cell--sm {
+  flex: 0.5;
+}
+
+.skeleton-table__cell--lg {
+  flex: 2;
+}
+
+/* 列表骨架屏 */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.skeleton-list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  background: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-base);
+}
+
+.skeleton-list__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+}
+
+.skeleton-list__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.skeleton-list__line {
+  height: 12px;
+  width: 100%;
+}
+
+.skeleton-list__line--short {
+  width: 50%;
+}
+
+/* 图表骨架屏 */
+.skeleton-chart {
+  width: 100%;
+  height: 200px;
+  border-radius: var(--radius-lg);
+  background: var(--color-neutral-100);
+}
+
+.skeleton-chart--sm {
+  height: 150px;
+}
+
+.skeleton-chart--lg {
+  height: 300px;
+}
+
+.skeleton-chart--xl {
+  height: 400px;
+}
+
+/* ==================== 页面级骨架屏 ==================== */
+
+.skeleton-page {
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.skeleton-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.skeleton-page__title {
+  height: 24px;
+  width: 200px;
+}
+
+.skeleton-page__actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.skeleton-page__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-4);
+}
+
+/* ==================== 深色模式支持 ==================== */
+
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-neutral-800) 0%,
+      var(--color-neutral-700) 50%,
+      var(--color-neutral-800) 100%
+    );
+  }
+
+  .skeleton-card {
+    background: var(--color-neutral-900);
+    border-color: var(--color-neutral-700);
+  }
+
+  .skeleton-list__item {
+    background: var(--color-neutral-900);
+    border-color: var(--color-neutral-700);
+  }
+}
+
+/* ==================== 辅助类 ==================== */
+
+/* 延迟显示动画 */
+.skeleton--delay-1 {
+  animation-delay: 0.1s;
+}
+
+.skeleton--delay-2 {
+  animation-delay: 0.2s;
+}
+
+.skeleton--delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* 脉冲效果 */
+.skeleton--pulse {
+  animation: skeleton-pulse 2s var(--ease-in-out) infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* 闪烁效果 */
+.skeleton--shimmer {
+  animation: skeleton-shimmer 1.5s var(--ease-in-out) infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}

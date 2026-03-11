@@ -1,0 +1,290 @@
+/**
+ * TopBar 组件样式 - 左侧栏布局
+ * 参考 Linear、Vercel、Figma 等顶级工具的设计风格
+ */
+
+.top-bar {
+  position: fixed;
+  top: 20px;
+  left: 80px;
+  bottom: 20px;
+  width: 72px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-neutral-200);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.top-bar::-webkit-scrollbar {
+  width: 0;
+}
+
+.top-bar__separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-neutral-300),
+    transparent
+  );
+  margin: var(--spacing-2) 0;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+/* 按钮组 */
+.top-bar__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+/* 基础按钮样式 */
+.top-bar__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 64px;
+  height: auto;
+  min-height: 64px;
+  padding: 8px 4px;
+  font-family: var(--font-family-sans);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  user-select: none;
+  position: relative;
+  overflow: visible;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.top-bar__btn svg {
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.top-bar__label {
+  font-size: 10px;
+  color: #6b7280;
+  white-space: nowrap;
+  text-align: center;
+  font-weight: 500;
+  transition: color 0.1s ease;
+}
+
+.top-bar__btn:hover .top-bar__label {
+  color: white;
+}
+
+/* 默认按钮 - 参考 Vercel */
+.top-bar__btn--default {
+  background: var(--color-neutral-0);
+  color: var(--color-neutral-600);
+  border: 1px solid var(--color-neutral-200);
+  box-shadow: var(--shadow-xs);
+}
+
+.top-bar__btn--default:hover {
+  background: var(--color-primary-500);
+  color: var(--color-neutral-0);
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-sm);
+  transform: scale(1.05);
+}
+
+.top-bar__btn--default:active {
+  background: var(--color-primary-600);
+  transform: scale(0.95);
+}
+
+/* 主色按钮 - 参考 Linear */
+.top-bar__btn--primary {
+  background: var(--color-primary-500);
+  color: var(--color-neutral-0);
+  border-color: var(--color-primary-600);
+  box-shadow: var(--shadow-xs), 0 1px 2px rgba(59, 130, 246, 0.2);
+}
+
+.top-bar__btn--primary:hover {
+  background: var(--color-primary-600);
+  border-color: var(--color-primary-700);
+  box-shadow: var(--shadow-sm), 0 2px 8px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.top-bar__btn--primary:active {
+  background: var(--color-primary-700);
+  border-color: var(--color-primary-800);
+  box-shadow: var(--shadow-inner);
+  transform: translateY(0);
+}
+
+/* 成功按钮 */
+.top-bar__btn--success {
+  background: var(--color-success-500);
+  color: var(--color-neutral-0);
+  border: none;
+  box-shadow: var(--shadow-xs);
+}
+
+.top-bar__btn--success:hover {
+  background: var(--color-success-600);
+  box-shadow: var(--shadow-md);
+}
+
+.top-bar__btn--success:active {
+  transform: scale(0.95);
+}
+
+/* 警告按钮 */
+.top-bar__btn--warning {
+  background: var(--color-warning-500);
+  color: var(--color-neutral-0);
+  border: none;
+  box-shadow: var(--shadow-xs);
+}
+
+.top-bar__btn--warning:hover {
+  background: var(--color-warning-600);
+  box-shadow: var(--shadow-md);
+}
+
+.top-bar__btn--warning:active {
+  transform: scale(0.95);
+}
+
+/* 错误按钮 */
+.top-bar__btn--error {
+  background: var(--color-error-500);
+  color: var(--color-neutral-0);
+  border-color: var(--color-error-600);
+  box-shadow: var(--shadow-xs), 0 1px 2px rgba(239, 68, 68, 0.2);
+}
+
+.top-bar__btn--error:hover {
+  background: var(--color-error-600);
+  border-color: var(--color-error-700);
+  box-shadow: var(--shadow-sm), 0 2px 8px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+.top-bar__btn--error:active {
+  background: var(--color-error-700);
+  box-shadow: var(--shadow-inner);
+  transform: translateY(0);
+}
+
+/* 信息按钮 */
+.top-bar__btn--info {
+  background: var(--color-info-500);
+  color: var(--color-neutral-0);
+  border: none;
+  box-shadow: var(--shadow-xs);
+}
+
+.top-bar__btn--info:hover {
+  background: var(--color-info-600);
+  box-shadow: var(--shadow-md);
+}
+
+.top-bar__btn--info:active {
+  transform: scale(0.95);
+}
+
+/* 强调按钮 - 紫色 */
+.top-bar__btn--accent {
+  background: var(--color-accent-500);
+  color: var(--color-neutral-0);
+  border: none;
+  box-shadow: var(--shadow-xs);
+}
+
+.top-bar__btn--accent:hover {
+  background: var(--color-accent-600);
+  box-shadow: var(--shadow-md);
+}
+
+.top-bar__btn--accent:active {
+  transform: scale(0.95);
+}
+
+/* Agent 按钮 - 统一为默认样式 */
+.top-bar__btn--agent {
+  background: var(--color-neutral-0);
+  color: var(--color-neutral-600);
+  border: 1px solid var(--color-neutral-200);
+  box-shadow: var(--shadow-xs);
+}
+
+.top-bar__btn--agent:hover {
+  background: var(--color-primary-500);
+  color: var(--color-neutral-0);
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-sm);
+  transform: scale(1.05);
+}
+
+.top-bar__btn--agent:active {
+  background: var(--color-primary-600);
+  transform: scale(0.95);
+}
+
+/* Persona 按钮 - 统一为默认样式 */
+.top-bar__btn--persona {
+  background: var(--color-neutral-0);
+  color: var(--color-neutral-600);
+  border: 1px solid var(--color-neutral-200);
+  box-shadow: var(--shadow-xs);
+}
+
+.top-bar__btn--persona:hover {
+  background: var(--color-primary-500);
+  color: var(--color-neutral-0);
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-sm);
+  transform: scale(1.05);
+}
+
+.top-bar__btn--persona:active {
+  background: var(--color-primary-600);
+  transform: scale(0.95);
+}
+
+/* 按钮图标 */
+.top-bar__btn__icon {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: --breakpoint-sm) {
+  .top-bar {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    padding: var(--spacing-2);
+    gap: var(--spacing-1);
+  }
+  
+  .top-bar__btn {
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: var(--font-size-xs);
+  }
+}

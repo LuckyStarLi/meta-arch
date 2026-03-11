@@ -1,0 +1,320 @@
+/**
+ * 图标系统样式
+ * 统一所有图标的视觉风格
+ * 参考 Material Design Icons、Heroicons、Lucide 等顶级图标库
+ */
+
+/* 基础图标样式 */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: all var(--duration-150) var(--ease-out);
+}
+
+/* 图标尺寸变体 */
+.icon--xs {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.icon--sm {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+.icon--md {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+
+.icon--lg {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+
+.icon--xl {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}
+
+.icon--2xl {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+}
+
+/* 图标颜色变体 */
+.icon--primary {
+  color: var(--color-primary-500);
+}
+
+.icon--accent {
+  color: var(--color-accent-500);
+}
+
+.icon--success {
+  color: var(--color-success-500);
+}
+
+.icon--warning {
+  color: var(--color-warning-500);
+}
+
+.icon--error {
+  color: var(--color-error-500);
+}
+
+.icon--neutral {
+  color: var(--color-neutral-600);
+}
+
+/* 图标背景样式 */
+.icon-with-bg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-base);
+  transition: all var(--duration-150) var(--ease-out);
+}
+
+.icon-with-bg--primary {
+  background: var(--color-primary-100);
+  color: var(--color-primary-600);
+}
+
+.icon-with-bg--primary:hover {
+  background: var(--color-primary-200);
+  transform: scale(1.1);
+}
+
+.icon-with-bg--accent {
+  background: var(--color-accent-100);
+  color: var(--color-accent-600);
+}
+
+.icon-with-bg--success {
+  background: var(--color-success-100);
+  color: var(--color-success-600);
+}
+
+.icon-with-bg--warning {
+  background: var(--color-warning-100);
+  color: var(--color-warning-600);
+}
+
+.icon-with-bg--error {
+  background: var(--color-error-100);
+  color: var(--color-error-600);
+}
+
+/* 按钮中的图标 */
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-1);
+  font-size: 1.1em;
+}
+
+/* 徽章图标 */
+.badge__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+}
+
+/* 节点图标优化 */
+.node-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-2);
+  font-size: 1.4em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+.node:hover .node-icon {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* 状态图标 */
+.status-icon {
+  position: relative;
+  display: inline-flex;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 2px solid white;
+  background: var(--color-success-500);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+.status-indicator--online {
+  background: var(--color-success-500);
+  animation: pulse 2s infinite;
+}
+
+.status-indicator--offline {
+  background: var(--color-neutral-400);
+}
+
+.status-indicator--busy {
+  background: var(--color-warning-500);
+}
+
+.status-indicator--error {
+  background: var(--color-error-500);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* 加载图标 */
+.loading-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 箭头图标 */
+.arrow-icon {
+  transition: transform var(--duration-150) var(--ease-out);
+}
+
+.arrow-icon--rotated {
+  transform: rotate(90deg);
+}
+
+/* 工具提示图标 */
+.tooltip-icon {
+  cursor: help;
+  opacity: 0.6;
+  transition: opacity var(--duration-150) var(--ease-out);
+}
+
+.tooltip-icon:hover {
+  opacity: 1;
+}
+
+/* 图标按钮 */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: var(--spacing-2);
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+  border: none;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--duration-150) var(--ease-out);
+}
+
+.icon-button:hover {
+  background: var(--color-neutral-200);
+  color: var(--color-neutral-900);
+  transform: scale(1.05);
+}
+
+.icon-button:active {
+  background: var(--color-neutral-300);
+  transform: scale(0.95);
+}
+
+.icon-button--primary {
+  background: var(--color-primary-100);
+  color: var(--color-primary-600);
+}
+
+.icon-button--primary:hover {
+  background: var(--color-primary-200);
+}
+
+.icon-button--danger {
+  background: var(--color-error-100);
+  color: var(--color-error-600);
+}
+
+.icon-button--danger:hover {
+  background: var(--color-error-200);
+}
+
+/* 图标组 */
+.icon-group {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.icon-group .icon-button {
+  width: 32px;
+  height: 32px;
+}
+
+/* SVG 图标优化 */
+.icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2px;
+  fill: none;
+  stroke: currentColor;
+}
+
+/* 响应式调整 */
+@media (max-width: --breakpoint-sm) {
+  .icon--lg {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+  
+  .icon--xl {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+  }
+  
+  .icon--2xl {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+}

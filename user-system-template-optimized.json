@@ -1,0 +1,488 @@
+{
+  "metadata": {
+    "id": "template-user-system-enhanced-20260307",
+    "name": "用户系统架构（增强版 - 含 AI Agent 和数字人）",
+    "description": "完整的用户系统架构设计，包含用户管理、积分系统、账户系统、标签系统，并集成 AI 智能能力：数字人客服、对话机器人、个性化推荐、风控检测、数据分析等 Agent",
+    "createdAt": "2026-03-07T00:00:00.000Z",
+    "updatedAt": "2026-03-07T00:00:00.000Z",
+    "version": 1,
+    "thumbnail": "",
+    "tags": ["用户系统", "AI", "Agent", "数字人", "积分", "账户", "推荐系统", "风控", "微服务"],
+    "category": "saas"
+  },
+  "content": {
+    "nodes": [
+      {
+        "id": "frontend-web-admin",
+        "type": "default",
+        "position": { "x": 50, "y": 250 },
+        "data": {
+          "label": "Frontend: Web 管理后台",
+          "type": "frontend",
+          "config": {
+            "name": "用户系统管理后台",
+            "framework": "React",
+            "port": 3000,
+            "description": "基于 React 的 Web 管理后台，提供用户管理、积分管理、账户管理、标签管理等功能"
+          }
+        }
+      },
+      {
+        "id": "persona-customer-service",
+        "type": "default",
+        "position": { "x": 50, "y": 50 },
+        "data": {
+          "label": "数字人：智能客服",
+          "type": "persona",
+          "config": {
+            "name": "智能客服数字人",
+            "avatar": "avatar_female_01",
+            "description": "7x24 小时在线的智能客服数字人，提供用户咨询、业务办理服务",
+            "personality": {
+              "traits": {
+                "openness": 0.8,
+                "conscientiousness": 0.9,
+                "extraversion": 0.7,
+                "agreeableness": 0.9,
+                "neuroticism": 0.2
+              },
+              "communication": {
+                "tone": "friendly",
+                "formality": 0.6,
+                "verbosity": 0.5,
+                "emoji": true,
+                "language": ["zh-CN", "en-US"]
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "agent-chatbot",
+        "type": "default",
+        "position": { "x": 300, "y": 50 },
+        "data": {
+          "label": "Agent: 对话机器人",
+          "type": "agent",
+          "config": {
+            "name": "智能对话 Agent",
+            "agentType": "llm",
+            "description": "基于大模型的智能对话代理，处理用户咨询和投诉",
+            "capabilities": {
+              "inputs": [
+                { "name": "userMessage", "type": "string", "required": true, "description": "用户消息" },
+                { "name": "context", "type": "object", "required": false, "description": "对话上下文" }
+              ],
+              "outputs": [
+                { "name": "response", "type": "string", "description": "回复内容" },
+                { "name": "intent", "type": "string", "description": "识别的意图" }
+              ]
+            },
+            "triggers": [
+              { "type": "message", "config": { "messagePattern": ".*" } }
+            ],
+            "execution": {
+              "llm": {
+                "provider": "openai",
+                "model": "gpt-4",
+                "temperature": 0.7,
+                "maxTokens": 1000,
+                "systemPrompt": "你是一个专业的客服助手，负责解答用户问题"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "agent-recommender",
+        "type": "default",
+        "position": { "x": 300, "y": 180 },
+        "data": {
+          "label": "Agent: 个性化推荐",
+          "type": "agent",
+          "config": {
+            "name": "个性化推荐 Agent",
+            "agentType": "ml",
+            "description": "基于用户行为和标签的个性化推荐引擎",
+            "capabilities": {
+              "inputs": [
+                { "name": "userId", "type": "string", "required": true, "description": "用户 ID" },
+                { "name": "context", "type": "object", "required": false, "description": "上下文信息" }
+              ],
+              "outputs": [
+                { "name": "recommendations", "type": "array", "description": "推荐列表" }
+              ]
+            },
+            "execution": {
+              "mlModel": {
+                "modelPath": "/models/collaborative_filtering.pkl",
+                "inputSchema": { "userId": "string", "features": "object" },
+                "outputSchema": { "items": "array", "scores": "array" }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "agent-fraud-detection",
+        "type": "default",
+        "position": { "x": 300, "y": 310 },
+        "data": {
+          "label": "Agent: 风控检测",
+          "type": "agent",
+          "config": {
+            "name": "智能风控 Agent",
+            "agentType": "ml",
+            "description": "实时检测欺诈交易和异常行为",
+            "capabilities": {
+              "inputs": [
+                { "name": "transaction", "type": "object", "required": true, "description": "交易信息" },
+                { "name": "userHistory", "type": "object", "required": false, "description": "用户历史" }
+              ],
+              "outputs": [
+                { "name": "riskScore", "type": "number", "description": "风险评分 0-100" },
+                { "name": "isFraud", "type": "boolean", "description": "是否欺诈" }
+              ]
+            },
+            "triggers": [
+              { "type": "event", "config": { "eventPattern": "transaction.*" } }
+            ]
+          }
+        }
+      },
+      {
+        "id": "agent-data-analyst",
+        "type": "default",
+        "position": { "x": 300, "y": 440 },
+        "data": {
+          "label": "Agent: 数据分析师",
+          "type": "agent",
+          "config": {
+            "name": "数据分析 Agent",
+            "agentType": "workflow",
+            "description": "自动分析用户行为数据，生成洞察报告",
+            "capabilities": {
+              "inputs": [
+                { "name": "dateRange", "type": "object", "required": true, "description": "日期范围" },
+                { "name": "metrics", "type": "array", "required": false, "description": "指标列表" }
+              ],
+              "outputs": [
+                { "name": "report", "type": "object", "description": "分析报告" }
+              ]
+            },
+            "triggers": [
+              { "type": "scheduled", "config": { "cron": "0 9 * * 1" } }
+            ]
+          }
+        }
+      },
+      {
+        "id": "api-users",
+        "type": "default",
+        "position": { "x": 550, "y": 50 },
+        "data": {
+          "label": "API: 用户管理",
+          "type": "api",
+          "config": {
+            "name": "用户 API",
+            "route": "/api/v1/users/*",
+            "method": "POST",
+            "requiresAuth": false,
+            "description": "用户注册、登录、资料管理接口"
+          }
+        }
+      },
+      {
+        "id": "api-points",
+        "type": "default",
+        "position": { "x": 550, "y": 180 },
+        "data": {
+          "label": "API: 积分管理",
+          "type": "api",
+          "config": {
+            "name": "积分 API",
+            "route": "/api/v1/users/points/*",
+            "method": "POST",
+            "requiresAuth": true,
+            "description": "积分获取、消费、查询接口"
+          }
+        }
+      },
+      {
+        "id": "api-account",
+        "type": "default",
+        "position": { "x": 550, "y": 310 },
+        "data": {
+          "label": "API: 账户管理",
+          "type": "api",
+          "config": {
+            "name": "账户 API",
+            "route": "/api/v1/users/balance/*",
+            "method": "POST",
+            "requiresAuth": true,
+            "description": "充值、提现、余额查询接口"
+          }
+        }
+      },
+      {
+        "id": "api-tags",
+        "type": "default",
+        "position": { "x": 550, "y": 440 },
+        "data": {
+          "label": "API: 标签管理",
+          "type": "api",
+          "config": {
+            "name": "标签 API",
+            "route": "/api/v1/tags/*",
+            "method": "GET",
+            "requiresAuth": false,
+            "description": "标签 CRUD、用户标签关联接口"
+          }
+        }
+      },
+      {
+        "id": "api-ai-chat",
+        "type": "default",
+        "position": { "x": 550, "y": 570 },
+        "data": {
+          "label": "API: AI 对话",
+          "type": "api",
+          "config": {
+            "name": "AI 对话 API",
+            "route": "/api/v1/ai/chat/*",
+            "method": "POST",
+            "requiresAuth": true,
+            "description": "与数字人/Agent 对话接口"
+          }
+        }
+      },
+      {
+        "id": "service-user",
+        "type": "default",
+        "position": { "x": 800, "y": 50 },
+        "data": {
+          "label": "Service: UserService",
+          "type": "service",
+          "config": {
+            "name": "用户服务",
+            "functionName": "UserService",
+            "description": "用户注册、登录、资料管理、JWT 认证"
+          }
+        }
+      },
+      {
+        "id": "service-points",
+        "type": "default",
+        "position": { "x": 800, "y": 180 },
+        "data": {
+          "label": "Service: PointsService",
+          "type": "service",
+          "config": {
+            "name": "积分服务",
+            "functionName": "PointsService",
+            "description": "积分获取、消费、规则管理、交易记录"
+          }
+        }
+      },
+      {
+        "id": "service-account",
+        "type": "default",
+        "position": { "x": 800, "y": 310 },
+        "data": {
+          "label": "Service: AccountService",
+          "type": "service",
+          "config": {
+            "name": "账户服务",
+            "functionName": "AccountService",
+            "description": "充值、提现、余额管理、冻结/解冻"
+          }
+        }
+      },
+      {
+        "id": "service-tag",
+        "type": "default",
+        "position": { "x": 800, "y": 440 },
+        "data": {
+          "label": "Service: TagService",
+          "type": "service",
+          "config": {
+            "name": "标签服务",
+            "functionName": "TagService",
+            "description": "标签管理、用户标签关联、标签查询"
+          }
+        }
+      },
+      {
+        "id": "service-ai-orchestrator",
+        "type": "default",
+        "position": { "x": 800, "y": 570 },
+        "data": {
+          "label": "Service: AIOrchestratorService",
+          "type": "service",
+          "config": {
+            "name": "AI 编排服务",
+            "functionName": "AIOrchestratorService",
+            "description": "Agent 调度、数字人交互、对话管理、意图识别"
+          }
+        }
+      },
+      {
+        "id": "repo-user",
+        "type": "default",
+        "position": { "x": 1050, "y": 50 },
+        "data": {
+          "label": "Repository: UserRepository",
+          "type": "repository",
+          "config": {
+            "name": "用户数据访问层",
+            "entity": "users",
+            "operations": ["create", "read", "update", "delete"],
+            "description": "用户数据的 CRUD 操作"
+          }
+        }
+      },
+      {
+        "id": "repo-points",
+        "type": "default",
+        "position": { "x": 1050, "y": 180 },
+        "data": {
+          "label": "Repository: PointsAccountRepository",
+          "type": "repository",
+          "config": {
+            "name": "积分账户数据访问层",
+            "entity": "user_points_accounts",
+            "operations": ["create", "read", "update"],
+            "description": "积分账户的 CRUD 操作"
+          }
+        }
+      },
+      {
+        "id": "repo-account",
+        "type": "default",
+        "position": { "x": 1050, "y": 310 },
+        "data": {
+          "label": "Repository: AccountBalanceRepository",
+          "type": "repository",
+          "config": {
+            "name": "账户余额数据访问层",
+            "entity": "user_account_balances",
+            "operations": ["create", "read", "update"],
+            "description": "账户余额的 CRUD 操作"
+          }
+        }
+      },
+      {
+        "id": "repo-tag",
+        "type": "default",
+        "position": { "x": 1050, "y": 440 },
+        "data": {
+          "label": "Repository: TagRepository",
+          "type": "repository",
+          "config": {
+            "name": "标签数据访问层",
+            "entity": "tags",
+            "operations": ["create", "read", "update", "delete"],
+            "description": "标签的 CRUD 操作"
+          }
+        }
+      },
+      {
+        "id": "repo-conversation",
+        "type": "default",
+        "position": { "x": 1050, "y": 570 },
+        "data": {
+          "label": "Repository: ConversationRepository",
+          "type": "repository",
+          "config": {
+            "name": "对话记录数据访问层",
+            "entity": "ai_conversations",
+            "operations": ["create", "read", "update"],
+            "description": "AI 对话记录的存储和查询"
+          }
+        }
+      },
+      {
+        "id": "database-mysql",
+        "type": "default",
+        "position": { "x": 1300, "y": 300 },
+        "data": {
+          "label": "Database: MySQL",
+          "type": "database",
+          "config": {
+            "name": "user_system 数据库",
+            "type": "mysql",
+            "host": "localhost",
+            "port": 3306,
+            "description": "主数据库，存储用户、积分、账户、标签等核心数据"
+          }
+        }
+      },
+      {
+        "id": "vector-db",
+        "type": "default",
+        "position": { "x": 1300, "y": 500 },
+        "data": {
+          "label": "Vector DB: Milvus",
+          "type": "database",
+          "config": {
+            "name": "向量数据库",
+            "type": "milvus",
+            "host": "localhost",
+            "port": 19530,
+            "description": "存储用户画像、对话 Embedding、知识库向量"
+          }
+        }
+      },
+      {
+        "id": "llm-provider",
+        "type": "default",
+        "position": { "x": 1050, "y": 700 },
+        "data": {
+          "label": "External: LLM Provider",
+          "type": "api",
+          "config": {
+            "name": "大模型服务",
+            "route": "https://api.openai.com/v1",
+            "method": "POST",
+            "requiresAuth": true,
+            "description": "OpenAI/GPT-4、Anthropic/Claude 等外部 LLM 服务"
+          }
+        }
+      }
+    ],
+    "edges": [
+      { "id": "edge-frontend-to-api-users", "source": "frontend-web-admin", "target": "api-users" },
+      { "id": "edge-frontend-to-api-points", "source": "frontend-web-admin", "target": "api-points" },
+      { "id": "edge-frontend-to-api-account", "source": "frontend-web-admin", "target": "api-account" },
+      { "id": "edge-frontend-to-api-tags", "source": "frontend-web-admin", "target": "api-tags" },
+      { "id": "edge-frontend-to-api-ai", "source": "frontend-web-admin", "target": "api-ai-chat" },
+      { "id": "edge-persona-to-agent-chat", "source": "persona-customer-service", "target": "agent-chatbot" },
+      { "id": "edge-persona-to-api-ai", "source": "persona-customer-service", "target": "api-ai-chat" },
+      { "id": "edge-agent-chat-to-api-ai", "source": "agent-chatbot", "target": "api-ai-chat" },
+      { "id": "edge-agent-rec-to-api-tags", "source": "agent-recommender", "target": "api-tags" },
+      { "id": "edge-agent-fraud-to-api-account", "source": "agent-fraud-detection", "target": "api-account" },
+      { "id": "edge-agent-analyst-to-api-users", "source": "agent-data-analyst", "target": "api-users" },
+      { "id": "edge-agent-analyst-to-api-points", "source": "agent-data-analyst", "target": "api-points" },
+      { "id": "edge-api-users-to-service", "source": "api-users", "target": "service-user" },
+      { "id": "edge-api-points-to-service", "source": "api-points", "target": "service-points" },
+      { "id": "edge-api-account-to-service", "source": "api-account", "target": "service-account" },
+      { "id": "edge-api-tags-to-service", "source": "api-tags", "target": "service-tag" },
+      { "id": "edge-api-ai-to-orchestrator", "source": "api-ai-chat", "target": "service-ai-orchestrator" },
+      { "id": "edge-orchestrator-to-agent-chat", "source": "service-ai-orchestrator", "target": "agent-chatbot" },
+      { "id": "edge-orchestrator-to-agent-rec", "source": "service-ai-orchestrator", "target": "agent-recommender" },
+      { "id": "edge-orchestrator-to-conversation-repo", "source": "service-ai-orchestrator", "target": "repo-conversation" },
+      { "id": "edge-service-user-to-repo", "source": "service-user", "target": "repo-user" },
+      { "id": "edge-service-points-to-repo", "source": "service-points", "target": "repo-points" },
+      { "id": "edge-service-account-to-repo", "source": "service-account", "target": "repo-account" },
+      { "id": "edge-service-tag-to-repo", "source": "service-tag", "target": "repo-tag" },
+      { "id": "edge-repo-user-to-db", "source": "repo-user", "target": "database-mysql" },
+      { "id": "edge-repo-points-to-db", "source": "repo-points", "target": "database-mysql" },
+      { "id": "edge-repo-account-to-db", "source": "repo-account", "target": "database-mysql" },
+      { "id": "edge-repo-tag-to-db", "source": "repo-tag", "target": "database-mysql" },
+      { "id": "edge-conversation-repo-to-mysql", "source": "repo-conversation", "target": "database-mysql" },
+      { "id": "edge-conversation-repo-to-vector", "source": "repo-conversation", "target": "vector-db" },
+      { "id": "edge-orchestrator-to-llm", "source": "service-ai-orchestrator", "target": "llm-provider" },
+      { "id": "edge-agent-rec-to-vector", "source": "agent-recommender", "target": "vector-db" }
+    ]
+  }
+}
